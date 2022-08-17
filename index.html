@@ -71,6 +71,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vscodePasteImage" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/08/18/vscodePasteImage/" class="article-date">
+  <time class="dt-published" datetime="2022-08-17T15:03:04.000Z" itemprop="datePublished">2022-08-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">programming</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/08/18/vscodePasteImage/">vscocodeの拡張機能のPasteImageを導入する</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li>vscodeの拡張機能「Paste Image」を導入しよう</li>
+<li>導入して使いやすいように、<code>setting.json</code>を編集しよう。</li>
+</ul>
+<h2 id="Paste-Image。とは"><a href="#Paste-Image。とは" class="headerlink" title="Paste Image。とは"></a>Paste Image。とは</h2><p>VsCodeの拡張機能で、画像キャプチャしたデータをmdファイルに貼り付けられる機能<br>markdownで貼り付けた際は、指定したディレクトリに画像ファイルを自動で保存してくれる。</p>
+<h2 id="Paste-Imageのインストール"><a href="#Paste-Imageのインストール" class="headerlink" title="Paste Imageのインストール"></a>Paste Imageのインストール</h2><p>vscodeの拡張機能で下記をインストールする。</p>
+<p><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image">Paste Image - Visual Studio Marketplace</a><br></p>
+<h2 id="PasteImageの設定"><a href="#PasteImageの設定" class="headerlink" title="PasteImageの設定"></a>PasteImageの設定</h2><p><code>setting.json</code>にPasteImageの設定を追記する。下記をそのままコピペするといい。<br>これはmarkdownを貼り付けた際に、どういう形式で保存するかを記載している</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">&quot;pasteImage.defaultName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Y-MM-DD-HH-mm-ss&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;pasteImage.insertPattern&quot;</span><span class="punctuation">:</span> <span class="string">&quot;![]($&#123;imageFilePath&#125;)&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;pasteImage.path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;projectRoot&#125;/source/images/$&#123;currentFileNameWithoutExt&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;pasteImage.basePath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;projectRoot&#125;/source&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;pasteImage.forceUnixStyleSeparator&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;pasteImage.prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>$&#123;projectRoot&#125;</code>は、VScodeで開いているワークスペースのディレクトリパスとなる。</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>クリップボードにコピーした画像を、貼り付けてあげると良い。<br>貼り付ける際は、<code>shift + command + P</code>で表示されるコマンド欄に、<code>paste image</code>と入力してそれを選択してあげると貼り付けられる。</p>
+<p>このとき、このコマンドに対してショートカットキーを設定することもできるので設定するとよいだろう。</p>
+<p>僕のPCはMacなので、<br><code>shift + command + ctrl + 4</code>でクリップボードにコピーし<br><code>shift + command + ctrl + V</code>でクリップボードからmdにペーストできるようにしている</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a target="_blank" rel="noopener" href="https://openjny.github.io/posts/2019/02/24/hexo-blog/">Hexo によるブログ執筆環境の構築 | &#x2F;etc&#x2F;openjny</a><br><a target="_blank" rel="noopener" href="https://zenn.dev/ttani/articles/github-vscode-documentation-rule">GitHub+VSCodeでのMarkdownドキュメンテーションのプロジェクトルールを考える</a></p>
+        
+          <p class="article-more-link">
+            <a href="/2022/08/18/vscodePasteImage/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://scrymee.github.io/2022/08/18/vscodePasteImage/" data-id="cl6xra5xs000001h4250qe76e" data-title="vscocodeの拡張機能のPasteImageを導入する" class="article-share-link">共有</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/expansion/" rel="tag">expansion</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-jsGame" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/08/17/jsGame/" class="article-date">
@@ -89,7 +152,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/17/jsGame/">jsGame</a>
+      <a class="p-name article-title" href="/2022/08/17/jsGame/">jsでGameを作るときの座標関係を簡単に導入するロジック</a>
     </h1>
   
 
@@ -110,11 +173,11 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> height = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> width = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> board = [];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> y = <span class="number">0</span>; y &lt; height; y++)&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; width; x++)&#123;</span><br><span class="line">    board[y][x] = &#123;</span><br><span class="line">      <span class="attr">text</span>: <span class="string">&#x27;0&#x27;</span>,</span><br><span class="line">      <span class="attr">status</span>: <span class="string">&#x27;open&#x27;</span></span><br><span class="line">    &#125;;    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>これにより将来的な処理で、オブジェクトのプロパティを参照できる。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> height = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> width = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> y = <span class="number">0</span>; y &lt; height; y++)&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; width; x++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(board[y][x].<span class="property">open</span>) &#123;</span><br><span class="line">      <span class="comment">//指定した座標がopen状態の時の処理</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">//指定した座標がclose状態の時の処理</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> height = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> width = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> y = <span class="number">0</span>; y &lt; height; y++)&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; width; x++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(board[y][x].<span class="property">open</span>) &#123;</span><br><span class="line">      <span class="comment">//指定した座標がopen状態の時の処理</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">//指定した座標がclose状態の時の処理</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://scrymee.github.io/2022/08/17/jsGame/" data-id="cl6xp4ya00000iyh40lufcnz7" data-title="jsGame" class="article-share-link">共有</a>
+      <a data-url="https://scrymee.github.io/2022/08/17/jsGame/" data-id="cl6xp4ya00000iyh40lufcnz7" data-title="jsでGameを作るときの座標関係を簡単に導入するロジック" class="article-share-link">共有</a>
       
       
       
@@ -491,7 +554,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">タグ</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeing/" rel="tag">codeing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/" rel="tag">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeing/" rel="tag">codeing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/" rel="tag">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expansion/" rel="tag">expansion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li></ul>
     </div>
   </div>
 
@@ -501,7 +564,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">タグクラウド</h3>
     <div class="widget tagcloud">
-      <a href="/tags/codeing/" style="font-size: 10px;">codeing</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a>
+      <a href="/tags/codeing/" style="font-size: 10px;">codeing</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/expansion/" style="font-size: 10px;">expansion</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a>
     </div>
   </div>
 
@@ -523,7 +586,11 @@
       <ul>
         
           <li>
-            <a href="/2022/08/17/jsGame/">jsGame</a>
+            <a href="/2022/08/18/vscodePasteImage/">vscocodeの拡張機能のPasteImageを導入する</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/17/jsGame/">jsでGameを作るときの座標関係を簡単に導入するロジック</a>
           </li>
         
           <li>
@@ -536,10 +603,6 @@
         
           <li>
             <a href="/2022/08/17/20220817shell/">シェルスクリプトのxargs内で複数の変数を使用する</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/17/uploadHexo/">Hexoでgithubにファイルをアップロード自動化する</a>
           </li>
         
       </ul>
