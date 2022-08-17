@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>hexoDeploy | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Summary Hexoをデプロイする ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexoDeploy">
+<meta property="og:url" content="https://scrymee.github.io/2022/08/17/deployHexo/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Summary Hexoをデプロイする ">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2022-08-17T03:46:30.000Z">
+<meta property="article:modified_time" content="2022-08-17T04:10:17.417Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSSフィード"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="検索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://scrymee.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-deployHexo" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/08/17/deployHexo/" class="article-date">
+  <time class="dt-published" datetime="2022-08-17T03:46:30.000Z" itemprop="datePublished">2022-08-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">programming</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      hexoDeploy
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li>Hexoをデプロイする</li>
+<li></li>
+</ul>
+<span id="more"></span>
+
+<h2 id="deploy用のライブラリインストール"><a href="#deploy用のライブラリインストール" class="headerlink" title="deploy用のライブラリインストール"></a>deploy用のライブラリインストール</h2><p><code>npm install hexo-deployer-git --save</code></p>
+<p>gitをhexoコマンドで使用するためのパッケージをインストールする</p>
+<h2 id="hexoをデプロイする準備"><a href="#hexoをデプロイする準備" class="headerlink" title="hexoをデプロイする準備"></a>hexoをデプロイする準備</h2><p>hexoにはgithubにデプロイ用のコマンドがあるので、それを使う<br>どのリポジトリにアップロードするかを設定する。</p>
+<p><code>_config.yml</code>で&lt;更新＞の箇所を修正する</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://example.com</span> <span class="comment"># &lt;更新&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/&#123;username&#125;/&#123;username&#125;.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>リポジトリのreposは、HTTPSで指定されているもの</p>
+<h2 id="デプロイ"><a href="#デプロイ" class="headerlink" title="デプロイ"></a>デプロイ</h2><p><code>hexo deploy</code>で可能。<code>hexo deploy -g</code>とオプションを追記することで、静的ファイルの生成も同時に行う</p>
+<p>また上記ライブラリをインストールしていないと下記のようなエラーが出るので</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR Deployer not found: git</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">NFO  Validating config</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Files loaded <span class="keyword">in</span> 49 ms</span><br><span class="line">INFO  0 files generated <span class="keyword">in</span> 20 ms</span><br><span class="line">INFO  Deploying: git</span><br><span class="line">INFO  Setting up Git deployment...</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> hexo/.deploy_git/.git/</span><br><span class="line">[main (root-commit) 93eef4a] First commit</span><br><span class="line"> 1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 placeholder</span><br><span class="line">INFO  Clearing .deploy_git folder...</span><br><span class="line">INFO  Copying files from public folder...</span><br><span class="line">INFO  Copying files from extend <span class="built_in">dirs</span>...</span><br><span class="line">[main 906c1c0] Site updated: 2022-08-17 13:07:00</span><br><span class="line"> 21 files changed, 6278 insertions(+)</span><br><span class="line"> create mode 100644 2022/08/16/hello-world/index.html</span><br><span class="line"> create mode 100644 2022/08/16/startHexo/index.html</span><br><span class="line"> create mode 100644 2022/08/17/uploadHexo/index.html</span><br><span class="line"> create mode 100644 archives/2022/08/index.html</span><br><span class="line"> create mode 100644 archives/2022/index.html</span><br><span class="line"> create mode 100644 archives/index.html</span><br><span class="line"> create mode 100644 css/fonts/FontAwesome.otf</span><br><span class="line"> create mode 100644 css/fonts/fontawesome-webfont.eot</span><br><span class="line"> create mode 100644 css/fonts/fontawesome-webfont.svg</span><br><span class="line"> create mode 100644 css/fonts/fontawesome-webfont.ttf</span><br><span class="line"> create mode 100644 css/fonts/fontawesome-webfont.woff</span><br><span class="line"> create mode 100644 css/fonts/fontawesome-webfont.woff2</span><br><span class="line"> create mode 100644 css/images/banner.jpg</span><br><span class="line"> create mode 100644 css/style.css</span><br><span class="line"> create mode 100644 fancybox/jquery.fancybox.min.css</span><br><span class="line"> create mode 100644 fancybox/jquery.fancybox.min.js</span><br><span class="line"> create mode 100644 index.html</span><br><span class="line"> create mode 100644 js/jquery-3.4.1.min.js</span><br><span class="line"> create mode 100644 js/script.js</span><br><span class="line"> delete mode 100644 placeholder</span><br><span class="line"> create mode 100644 tags/hexo/index.html</span><br><span class="line">Enumerating objects: 42, <span class="keyword">done</span>.</span><br><span class="line">Counting objects: 100% (42/42), <span class="keyword">done</span>.</span><br><span class="line">Delta compression using up to 8 threads</span><br><span class="line">Compressing objects: 100% (31/31), <span class="keyword">done</span>.</span><br><span class="line">Writing objects: 100% (42/42), 887.64 KiB | 15.04 MiB/s, <span class="keyword">done</span>.</span><br><span class="line">Total 42 (delta 6), reused 0 (delta 0), pack-reused 0</span><br><span class="line">remote: Resolving deltas: 100% (6/6), <span class="keyword">done</span>.</span><br><span class="line">To https://github.com/hoge/fuga.github.io.git</span><br><span class="line"> * [new branch]      HEAD -&gt; main</span><br><span class="line">Branch <span class="string">&#x27;main&#x27;</span> <span class="built_in">set</span> up to track remote branch <span class="string">&#x27;main&#x27;</span> from <span class="string">&#x27;https://github.com/scrymee/scrymee.github.io.git&#x27;</span>.</span><br><span class="line">INFO  Deploy <span class="keyword">done</span>: git</span><br></pre></td></tr></table></figure>
+<p>完了する。githubのリポジトリにアクセスすると確認できる。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a target="_blank" rel="noopener" href="https://qiita.com/genie-oh/items/8c19668c7dae6b4a153e">Git Pages &amp; Hexoで手軽な無料Blogを作る - Qiita</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://scrymee.github.io/2022/08/17/deployHexo/" data-id="cl6x3rym900041gh4ax6lcbys" data-title="hexoDeploy" class="article-share-link">共有</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/08/17/20220817publishMaster/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          hexoをdeployしたgithubのリポジトリからgithubPagesを確認する
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/08/17/20220817shell/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">シェルスクリプトのxargs内で複数の変数を使用する</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">カテゴリ</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeing/" rel="tag">codeing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/codeing/" style="font-size: 20px;">codeing</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">8月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/08/17/20220817publishMaster/">hexoをdeployしたgithubのリポジトリからgithubPagesを確認する</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/17/deployHexo/">hexoDeploy</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/17/20220817shell/">シェルスクリプトのxargs内で複数の変数を使用する</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/17/uploadHexo/">Hexoでgithubにファイルをアップロード自動化する</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/16/startHexo/">startHexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
