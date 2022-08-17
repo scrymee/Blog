@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://scrymee.github.io/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSSフィード"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="検索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://scrymee.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-uploadHexo" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/08/17/uploadHexo/" class="article-date">
+  <time class="dt-published" datetime="2022-08-17T00:19:30.000Z" itemprop="datePublished">2022-08-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/08/17/uploadHexo/">Hexoでgithubにファイルをアップロード自動化する</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="要するに。。。"><a href="#要するに。。。" class="headerlink" title="要するに。。。"></a>要するに。。。</h2><ul>
+<li>mdファイルをgitのリポジトリにアップロード</li>
+<li>Hexoで出力された静的ファイルをGithubPagesに公開する</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2022/08/17/uploadHexo/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://scrymee.github.io/2022/08/17/uploadHexo/" data-id="cl6x394ut0002umh483uu3ztg" data-title="Hexoでgithubにファイルをアップロード自動化する" class="article-share-link">共有</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-startHexo" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/08/16/startHexo/" class="article-date">
+  <time class="dt-published" datetime="2022-08-16T14:26:36.000Z" itemprop="datePublished">2022-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/08/16/startHexo/">startHexo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="githubにブログをスムーズに公開する"><a href="#githubにブログをスムーズに公開する" class="headerlink" title="githubにブログをスムーズに公開する"></a>githubにブログをスムーズに公開する</h1><h2 id="要するに…"><a href="#要するに…" class="headerlink" title="要するに…"></a>要するに…</h2><ol>
+<li>Hexoというライブラリを使用する</li>
+<li>Github Pageを使用する</li>
+</ol>
+<p>Hexoは、Markdownをもとに静的テキストデータを出力する。<br>GithubPageは静的ページを良い感じに展開してくれるGitHubの機能。この２つを使用する。</p>
+<h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p>hexoを使用するためにはいくつかのライブラリが必要になるので、未インストールの場合はインストールする。これがある場合は割愛してよい。</p>
+<h3 id="node-jsとnpm"><a href="#node-jsとnpm" class="headerlink" title="node.jsとnpm"></a>node.jsとnpm</h3><p><code>node -v</code>で確認できる。<code>command not found</code>が出力された場合インストールする。</p>
+<p>Homebrewを使用してもインストールできるようだが、今回は公式サイトのインストーラーを使用する。</p>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/ja/">Node.js</a></p>
+<p>公式サイトでダウンロードしたファイルを起動して案内に従いインストールする。</p>
+<p>インストールされているか確認のためにversionを出力してみる</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">node -v</span></span><br><span class="line">v16.17.0</span><br></pre></td></tr></table></figure>
+
+<p>同じように、node.jsをインストールしたときに、npmというパッケージ管理ツールもインストールされるので確認しておく。<br>npmによって、いくつものライブラリを簡単にインストールすることができるようになる。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm -v</span></span><br><span class="line">8.15.0</span><br></pre></td></tr></table></figure>
+
+<p>良い感じ。</p>
+<h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3><p>今回はMarkdownをいい感じに出力してくれるhexoを使用する。その雛形をいい感じに作成してくれるhexoのコマンドをローカルでも使用できるようにする。</p>
+<p>余談だが、markdownはpandocなどを使用することでPDFやWordでの出力も可能であるし、PPT風の発表資料の作成もできる。markdown便利。</p>
+<p>閑話休題。引き続きhexoをインストールする。</p>
+<p><code>sudo npm install hexo-cli -g</code></p>
+<p>インストールが完了したら下記のコマンドでインストールされたか確認する</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo -v</span></span><br><span class="line">hexo-cli: 4.3.0</span><br><span class="line">os: darwin 20.6.0 11.6.4</span><br><span class="line"></span><br><span class="line">node: 16.17.0</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h2 id="Hexoのアプリケーションディレクトリ作成"><a href="#Hexoのアプリケーションディレクトリ作成" class="headerlink" title="Hexoのアプリケーションディレクトリ作成"></a>Hexoのアプリケーションディレクトリ作成</h2><p>事前準備が終わったら、Hexoによってブログの雛形を作成する。アプリケーションを作成したいディレクトリに移動して、下記コマンドを実行する</p>
+<p><code>hexo init [アプリ名]</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo init hexo</span></span><br><span class="line">INFO  Cloning hexo-starter https://github.com/hexojs/hexo-starter.git</span><br><span class="line">INFO  Install dependencies</span><br><span class="line">INFO  Start blogging with Hexo!</span><br></pre></td></tr></table></figure>
+
+<p>アプリケーションディレクトリにアクセスすると、諸々のファイルが作成されている</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> -1</span></span><br><span class="line">_config.landscape.yml</span><br><span class="line">_config.yml</span><br><span class="line">node_modules</span><br><span class="line">package-lock.json</span><br><span class="line">package.json</span><br><span class="line">scaffolds</span><br><span class="line">source</span><br><span class="line">themes</span><br></pre></td></tr></table></figure>
+
+<p>これで一旦完了。実際のブログを確認してみる。</p>
+<h3 id="Hexoで作成したブログの確認"><a href="#Hexoで作成したブログの確認" class="headerlink" title="Hexoで作成したブログの確認"></a>Hexoで作成したブログの確認</h3><p>Hexoで作成したアプリケーションディレクトリに移動して、<code>hexo server</code>で起動できる。<code>hexo s</code>でも良い。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo server</span></span><br><span class="line">INFO  Validating config</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000/ . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+
+<p>これで、実行時記載のURLにアクセスすると、ブログの画面が確認できる。</p>
+<h3 id="TOPページが記載されているmdファイルの確認"><a href="#TOPページが記載されているmdファイルの確認" class="headerlink" title="TOPページが記載されているmdファイルの確認"></a>TOPページが記載されているmdファイルの確認</h3><p>下記で確認可能。アプリケーションディレクトリの<code>source/_post/hello-world.md</code>に存在している。そのためこの中身を書き換えることで、記事の中身も変更できる。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> <span class="built_in">source</span></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> <span class="built_in">source</span>/_post</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> -1</span></span><br><span class="line">hello-world.md</span><br></pre></td></tr></table></figure>
+
+<h2 id="記事を追加する"><a href="#記事を追加する" class="headerlink" title="記事を追加する"></a>記事を追加する</h2><p>記事は、<code>hexo new [mdファイル名]</code>で作成ができる。これも<code>hexo n [mdファイル名]</code>でも良い。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo n <span class="string">&#x27;startHexo&#x27;</span></span></span><br><span class="line">INFO  Validating config</span><br><span class="line">INFO  Created: ~/workspace/hexo/source/_posts/startHexo.md</span><br></pre></td></tr></table></figure>
+
+<p>これで、<code>source/_post</code>ディレクトリ内にmdファイルが作成される</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">% </span><span class="language-bash"><span class="built_in">ls</span> -1</span></span><br><span class="line">hello-world.md</span><br><span class="line">startHexo.md</span><br></pre></td></tr></table></figure>
+
+<p>余談だが、詳しいコマンドは、<code>hexo --help</code>から確認できる。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo --<span class="built_in">help</span></span></span><br><span class="line">INFO  Validating config</span><br><span class="line">Usage: hexo &lt;command&gt;</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  clean     Remove generated files and cache.</span><br><span class="line">  config    Get or set configurations.</span><br><span class="line">  deploy    Deploy your website.</span><br><span class="line">  generate  Generate static files.</span><br><span class="line">  help      Get help on a command.</span><br><span class="line">  init      Create a new Hexo folder.</span><br><span class="line">  list      List the information of the site</span><br><span class="line">  migrate   Migrate your site from other system to Hexo.</span><br><span class="line">  new       Create a new post.</span><br><span class="line"></span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://scrymee.github.io/2022/08/16/startHexo/" data-id="cl6waous90000qhh4ewqi7ah3" data-title="startHexo" class="article-share-link">共有</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/08/16/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2022-08-16T14:10:16.490Z" itemprop="datePublished">2022-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/08/16/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://scrymee.github.io/2022/08/16/hello-world/" data-id="cl6w9pgzd000071h4ab8202rs" data-title="Hello World" class="article-share-link">共有</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">8月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/08/17/uploadHexo/">Hexoでgithubにファイルをアップロード自動化する</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/16/startHexo/">startHexo</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/16/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
