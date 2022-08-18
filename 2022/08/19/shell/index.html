@@ -4,20 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>シェルスクリプトのxargs内で複数の変数を使用する | Hexo</title>
+  <title>shellのオプションのユースケース紹介 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Summary ユースケース 実行するシェル 解説        Summary シェルでワンライナーで加工前の変数と加工後の変数を使用する方法 shell -c &#39;XX&#39;を用いる">
+  <meta name="description" content="シェルのオプションのユースケース紹介 デバッグ機能をつけたい shellで実行中にエラーが出たら処理を停止する 参考文献">
 <meta property="og:type" content="article">
-<meta property="og:title" content="シェルスクリプトのxargs内で複数の変数を使用する">
-<meta property="og:url" content="https://scrymee.github.io/2022/08/17/shell/index.html">
+<meta property="og:title" content="shellのオプションのユースケース紹介">
+<meta property="og:url" content="https://scrymee.github.io/2022/08/19/shell/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Summary ユースケース 実行するシェル 解説        Summary シェルでワンライナーで加工前の変数と加工後の変数を使用する方法 shell -c &#39;XX&#39;を用いる">
+<meta property="og:description" content="シェルのオプションのユースケース紹介 デバッグ機能をつけたい shellで実行中にエラーが出たら処理を停止する 参考文献">
 <meta property="og:locale" content="ja_JP">
-<meta property="article:published_time" content="2022-08-17T01:04:19.000Z">
-<meta property="article:modified_time" content="2022-08-18T13:36:46.548Z">
+<meta property="article:published_time" content="2022-08-18T15:20:35.000Z">
+<meta property="article:modified_time" content="2022-08-18T15:38:33.363Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="shell">
-<meta property="article:tag" content="coding">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -77,8 +76,8 @@
       <div class="outer">
         <section id="main"><article id="post-shell" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/08/17/shell/" class="article-date">
-  <time class="dt-published" datetime="2022-08-17T01:04:19.000Z" itemprop="datePublished">2022-08-17</time>
+    <a href="/2022/08/19/shell/" class="article-date">
+  <time class="dt-published" datetime="2022-08-18T15:20:35.000Z" itemprop="datePublished">2022-08-19</time>
 </a>
     
   <div class="article-category">
@@ -93,7 +92,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      シェルスクリプトのxargs内で複数の変数を使用する
+      shellのオプションのユースケース紹介
     </h1>
   
 
@@ -106,51 +105,46 @@
 <!-- toc -->
 
 <ul>
-<li><a href="#summary">Summary</a></li>
-<li><a href="#yusukesu">ユースケース</a><ul>
-<li><a href="#shi-xing-surusieru">実行するシェル</a></li>
-<li><a href="#jie-shuo">解説</a></li>
-</ul>
-</li>
+<li><a href="#sierunoopusiyonnoyusukesushao-jie">シェルのオプションのユースケース紹介</a></li>
+<li><a href="#debatuguji-neng-wotuketai">デバッグ機能をつけたい</a></li>
+<li><a href="#shelldeshi-xing-zhong-nieragachu-tarachu-li-woting-zhi-suru">shellで実行中にエラーが出たら処理を停止する</a></li>
+<li><a href="#can-kao-wen-xian">参考文献</a></li>
 </ul>
 <!-- tocstop -->
 
 </div>
 
-<h2><span id="summary">Summary</span><a href="#summary" class="header-anchor">#</a></h2><ul>
-<li>シェルでワンライナーで加工前の変数と加工後の変数を使用する方法</li>
-<li><code>shell -c &#39;XX&#39;</code>を用いる</li>
-</ul>
 <span id="more"></span>
 
-<h2><span id="yusukesu">ユースケース</span><a href="#yusukesu" class="header-anchor">#</a></h2><p>特定のファイルの出力ファイルをディレクトリ名から取得する</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">ls</span> -1</span><br><span class="line">apple-ringo.txt</span><br><span class="line">fish-sakana.txt</span><br></pre></td></tr></table></figure>
+<h2><span id="sierunoopusiyonnoyusukesushao-jie">シェルのオプションのユースケース紹介</span><a href="#sierunoopusiyonnoyusukesushao-jie" class="header-anchor">#</a></h2><p>シェルのオプションのユースケースを検討時点で紹介していく</p>
+<h2><span id="debatuguji-neng-wotuketai">デバッグ機能をつけたい</span><a href="#debatuguji-neng-wotuketai" class="header-anchor">#</a></h2><p>シェルスクリプトで変数に値を渡してそのコマンドを実行する処理を書いた。<br>その結果どのようなコマンドが実行されたかを確認したい</p>
+<p><code>-x</code>オプションを使うと良い。</p>
+<p><code>sh -x XXX.sh</code></p>
+<p>また、シェルファイルに書く場合は</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash -x</span></span><br></pre></td></tr></table></figure>
 
-<h3><span id="shi-xing-surusieru">実行するシェル</span><a href="#shi-xing-surusieru" class="header-anchor">#</a></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ./app/tests/ -name *.txt | xargs -I@ sh -c <span class="string">&quot; VAR=`sed &#x27;s/-//g&#x27;`; phpunit @ --coverage-php reports/<span class="variable">$VAR</span>.php&quot;</span></span><br></pre></td></tr></table></figure>
+<p>と書いても良いらしいし、特定のロジックのみ確認したい場合は<code>set -x</code>と<code>set +x</code>で囲む<br>なぜかシバン内に書いても動作しなかったので、基本的にはsetを使う</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">set</span> -x</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;TEST&#x27;</span></span><br><span class="line"><span class="built_in">set</span> +x</span><br></pre></td></tr></table></figure>
 
-<h3><span id="jie-shuo">解説</span><a href="#jie-shuo" class="header-anchor">#</a></h3><p>実行シェルの<code>find</code>で、app&#x2F;tests配下のファイルを全取得する</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ find ./app/tests/ -name *.txt</span><br><span class="line">app/tests/apple-ringoTest.php</span><br><span class="line">app/tests/fish-sakanaTest.php</span><br></pre></td></tr></table></figure>
+<h2><span id="shelldeshi-xing-zhong-nieragachu-tarachu-li-woting-zhi-suru">shellで実行中にエラーが出たら処理を停止する</span><a href="#shelldeshi-xing-zhong-nieragachu-tarachu-li-woting-zhi-suru" class="header-anchor">#</a></h2><p>これはあえて付けるというより、なぜかシェルスクリプトが最後まで実行されないケースがあったときに調査するとこのオプションが付いていたからだったという経験に基づく</p>
+<p><code>-e</code>オプションで、処理がエラーで返却された時点で後続の処理を実行させない</p>
+<p><code>sh -e XXX.sh</code></p>
+<p>ちなみに直前の終了ステータスは<code>$?</code>で確認できる</p>
+<p>下記のようにhogeディレクトリに移動して、fugaファイルを作りたいスクリプトのときに、使うだろう。ちなみに僕の場合はphpunitの実行が途中で終わってしまうのが不明で困っていたら、シェルの実行にこのオプションが付与されたいたためだったという経験がある。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">cd</span> hoge</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> fuga</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>その後<code>xargs -I@</code>で取得した値を引数として渡すが、引数の１つを加工したい。</p>
-<ol>
-<li><code>sed</code>で置換した値を<code>VAR</code>という変数に代入。（変数にコマンド結果を代入したい場合はバッククオートを使う)</li>
-<li>その後、セミコロンで次の処理を書く</li>
-<li>@内の変数とVARの変数がそれぞれ使用できるので記載する</li>
-<li>1~3までの処理を<code>sh -c</code>で囲んであげる</li>
-</ol>
-<p>最終的に下記のようなコマンド郡が実行される</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">phpunit app/tests/apple-ringoTest.php --coverage-php reports/appleringoTest.php</span><br><span class="line">phpunit app/tests/fish-sakanaTest.php --coverage-php reports/fishsakanaTest.php</span><br></pre></td></tr></table></figure>
-
-<p>これでよし</p>
+<p>もしeオプションを付与せずに実行した場合。hogeファイルが無いという処理は進むが、現在のディレクトリにfugaファイルを作成してしまう。<br>つまり、<code>./fuga</code>が作成される。</p>
+<p><code>./hoge/fuga</code>を作る場合は、きちんと<code>eオプション</code>をつける</p>
+<h2><span id="can-kao-wen-xian">参考文献</span><a href="#can-kao-wen-xian" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://qiita.com/magicant/items/f3554274ee500bddaca8">シェルスクリプトの罠を避ける三つの tips - Qiita</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://scrymee.github.io/2022/08/17/shell/" data-id="cl6x3rym700011gh44z6r9jev" data-title="シェルスクリプトのxargs内で複数の変数を使用する" class="article-share-link">共有</a>
+      <a data-url="https://scrymee.github.io/2022/08/19/shell/" data-id="cl6z7k5qj0000c9h44sduf6vg" data-title="shellのオプションのユースケース紹介" class="article-share-link">共有</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coding/" rel="tag">coding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/" rel="tag">shell</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/" rel="tag">shell</a></li></ul>
 
     </footer>
   </div>
@@ -158,19 +152,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/08/17/deployHexo/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          hexoをGithubにデプロイする
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/08/16/startHexo/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/08/18/git/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">startHexo</div>
+      <div class="article-nav-title">gitのリモートリポジトリのブランチ名を指定してPUSHする</div>
     </a>
   
 </nav>
