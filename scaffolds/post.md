@@ -7,8 +7,6 @@ tags:
     - {{ title }}
 ---
 
-## Summary
-
 <!-- toc -->
 
 <!-- more -->

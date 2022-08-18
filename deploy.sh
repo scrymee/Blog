@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -ne 1 ]; then
-    echo 'コミットメッセージをupdateに設定します'
+    echo '引数が１つではないためコミットメッセージをupdateに設定します'
     MSG='update'
     exit 1
 else
@@ -10,8 +10,14 @@ fi
 echo $MSG
 
 # ローカルのgitに修正を反映する
+echo '------------------------'
+echo 'git commit & push'
+echo '------------------------'
+o
+set -x # デバック開始
 git add . 
 git commit -m "$MSG"
+set +x # デバック出力停止 
 # mainブランチを指定リポジトリのsrcブランチにpushする
 git push -u origin main:src
 
@@ -20,4 +26,7 @@ git push -u origin main:src
 # hexo clean
 
 # hexoをデプロイする
+echo '------------------------'
+echo 'hexo deploy'
+echo '------------------------'
 hexo d -g
