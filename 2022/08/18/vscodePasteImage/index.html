@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>vscocodeの拡張機能のPasteImageを導入する | Hexo</title>
+  <title>vscodeの拡張機能のPasteImageを導入する | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Summary vscodeの拡張機能「Paste Image」を導入しよう 導入して使いやすいように、setting.jsonを編集しよう。  Paste Image。とはVsCodeの拡張機能で、画像キャプチャしたデータをmdファイルに貼り付けられる機能markdownで貼り付けた際は、指定したディレクトリに画像ファイルを自動で保存してくれる。 Paste Imageのインストールvscode">
+  <meta name="description" content="Summary Paste Image。とは Paste Imageのインストール PasteImageの設定 使用方法 参考文献      Summary vscodeの拡張機能「Paste Image」を導入しよう 導入して使いやすいように、setting.jsonを編集しよう。  Paste Image。とはVsCodeの拡張機能で、画像キャプチャしたデータをmdファイルに貼り付け">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vscocodeの拡張機能のPasteImageを導入する">
+<meta property="og:title" content="vscodeの拡張機能のPasteImageを導入する">
 <meta property="og:url" content="https://scrymee.github.io/2022/08/18/vscodePasteImage/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Summary vscodeの拡張機能「Paste Image」を導入しよう 導入して使いやすいように、setting.jsonを編集しよう。  Paste Image。とはVsCodeの拡張機能で、画像キャプチャしたデータをmdファイルに貼り付けられる機能markdownで貼り付けた際は、指定したディレクトリに画像ファイルを自動で保存してくれる。 Paste Imageのインストールvscode">
+<meta property="og:description" content="Summary Paste Image。とは Paste Imageのインストール PasteImageの設定 使用方法 参考文献      Summary vscodeの拡張機能「Paste Image」を導入しよう 導入して使いやすいように、setting.jsonを編集しよう。  Paste Image。とはVsCodeの拡張機能で、画像キャプチャしたデータをmdファイルに貼り付け">
 <meta property="og:locale" content="ja_JP">
 <meta property="article:published_time" content="2022-08-17T15:03:04.000Z">
-<meta property="article:modified_time" content="2022-08-17T15:15:37.249Z">
+<meta property="article:modified_time" content="2022-08-18T14:09:24.806Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="vscode">
 <meta property="article:tag" content="expansion">
@@ -93,7 +93,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      vscocodeの拡張機能のPasteImageを導入する
+      vscodeの拡張機能のPasteImageを導入する
     </h1>
   
 
@@ -101,28 +101,44 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+        <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#paste-image-toha">Paste Image。とは</a></li>
+<li><a href="#paste-imagenoinsutoru">Paste Imageのインストール</a></li>
+<li><a href="#pasteimagenoshe-ding">PasteImageの設定</a></li>
+<li><a href="#shi-yong-fang-fa">使用方法</a></li>
+<li><a href="#can-kao-wen-xian">参考文献</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h2><span id="summary">Summary</span><a href="#summary" class="header-anchor">#</a></h2><ul>
 <li>vscodeの拡張機能「Paste Image」を導入しよう</li>
 <li>導入して使いやすいように、<code>setting.json</code>を編集しよう。</li>
 </ul>
-<h2 id="Paste-Image。とは"><a href="#Paste-Image。とは" class="headerlink" title="Paste Image。とは"></a>Paste Image。とは</h2><p>VsCodeの拡張機能で、画像キャプチャしたデータをmdファイルに貼り付けられる機能<br>markdownで貼り付けた際は、指定したディレクトリに画像ファイルを自動で保存してくれる。</p>
-<h2 id="Paste-Imageのインストール"><a href="#Paste-Imageのインストール" class="headerlink" title="Paste Imageのインストール"></a>Paste Imageのインストール</h2><p>vscodeの拡張機能で下記をインストールする。</p>
+<h2><span id="paste-image-toha">Paste Image。とは</span><a href="#paste-image-toha" class="header-anchor">#</a></h2><p>VsCodeの拡張機能で、画像キャプチャしたデータをmdファイルに貼り付けられる機能<br>markdownで貼り付けた際は、指定したディレクトリに画像ファイルを自動で保存してくれる。</p>
+<h2><span id="paste-imagenoinsutoru">Paste Imageのインストール</span><a href="#paste-imagenoinsutoru" class="header-anchor">#</a></h2><p>vscodeの拡張機能で下記をインストールする。</p>
 <p><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image">Paste Image - Visual Studio Marketplace</a><br></p>
-<h2 id="PasteImageの設定"><a href="#PasteImageの設定" class="headerlink" title="PasteImageの設定"></a>PasteImageの設定</h2><p><code>setting.json</code>にPasteImageの設定を追記する。下記をそのままコピペするといい。<br>これはmarkdownを貼り付けた際に、どういう形式で保存するかを記載している</p>
+<h2><span id="pasteimagenoshe-ding">PasteImageの設定</span><a href="#pasteimagenoshe-ding" class="header-anchor">#</a></h2><p><code>setting.json</code>にPasteImageの設定を追記する。下記をそのままコピペするといい。<br>これはmarkdownを貼り付けた際に、どういう形式で保存するかを記載している</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">&quot;pasteImage.defaultName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Y-MM-DD-HH-mm-ss&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;pasteImage.insertPattern&quot;</span><span class="punctuation">:</span> <span class="string">&quot;![]($&#123;imageFilePath&#125;)&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;pasteImage.path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;projectRoot&#125;/source/images/$&#123;currentFileNameWithoutExt&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;pasteImage.basePath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;projectRoot&#125;/source&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;pasteImage.forceUnixStyleSeparator&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;pasteImage.prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p><code>$&#123;projectRoot&#125;</code>は、VScodeで開いているワークスペースのディレクトリパスとなる。</p>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>クリップボードにコピーした画像を、貼り付けてあげると良い。<br>貼り付ける際は、<code>shift + command + P</code>で表示されるコマンド欄に、<code>paste image</code>と入力してそれを選択してあげると貼り付けられる。</p>
+<h2><span id="shi-yong-fang-fa">使用方法</span><a href="#shi-yong-fang-fa" class="header-anchor">#</a></h2><p>クリップボードにコピーした画像を、貼り付けてあげると良い。<br>貼り付ける際は、<code>shift + command + P</code>で表示されるコマンド欄に、<code>paste image</code>と入力してそれを選択してあげると貼り付けられる。</p>
 <p>このとき、このコマンドに対してショートカットキーを設定することもできるので設定するとよいだろう。</p>
 <p>僕のPCはMacなので、<br><code>shift + command + ctrl + 4</code>でクリップボードにコピーし<br><code>shift + command + ctrl + V</code>でクリップボードからmdにペーストできるようにしている</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a target="_blank" rel="noopener" href="https://openjny.github.io/posts/2019/02/24/hexo-blog/">Hexo によるブログ執筆環境の構築 | &#x2F;etc&#x2F;openjny</a><br><a target="_blank" rel="noopener" href="https://zenn.dev/ttani/articles/github-vscode-documentation-rule">GitHub+VSCodeでのMarkdownドキュメンテーションのプロジェクトルールを考える</a></p>
+<h2><span id="can-kao-wen-xian">参考文献</span><a href="#can-kao-wen-xian" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://openjny.github.io/posts/2019/02/24/hexo-blog/">Hexo によるブログ執筆環境の構築 | &#x2F;etc&#x2F;openjny</a><br><a target="_blank" rel="noopener" href="https://zenn.dev/ttani/articles/github-vscode-documentation-rule">GitHub+VSCodeでのMarkdownドキュメンテーションのプロジェクトルールを考える</a></p>
 <span id="more"></span>
 
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://scrymee.github.io/2022/08/18/vscodePasteImage/" data-id="cl6xra5xs000001h4250qe76e" data-title="vscocodeの拡張機能のPasteImageを導入する" class="article-share-link">共有</a>
+      <a data-url="https://scrymee.github.io/2022/08/18/vscodePasteImage/" data-id="cl6xra5xs000001h4250qe76e" data-title="vscodeの拡張機能のPasteImageを導入する" class="article-share-link">共有</a>
       
       
       
@@ -133,6 +149,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2022/08/18/phpunitTips/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          phpunitを使うときのTips一覧
+        
+      </div>
+    </a>
   
   
     <a href="/2022/08/17/jsGame/" id="article-nav-older" class="article-nav-link-wrap">
@@ -164,7 +189,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">タグ</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeing/" rel="tag">codeing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/" rel="tag">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expansion/" rel="tag">expansion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/" rel="tag">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expansion/" rel="tag">expansion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpunit/" rel="tag">phpunit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li></ul>
     </div>
   </div>
 
@@ -174,7 +199,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">タグクラウド</h3>
     <div class="widget tagcloud">
-      <a href="/tags/codeing/" style="font-size: 10px;">codeing</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/expansion/" style="font-size: 10px;">expansion</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a>
+      <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/expansion/" style="font-size: 10px;">expansion</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/phpunit/" style="font-size: 10px;">phpunit</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a>
     </div>
   </div>
 
@@ -196,23 +221,23 @@
       <ul>
         
           <li>
-            <a href="/2022/08/18/vscodePasteImage/">vscocodeの拡張機能のPasteImageを導入する</a>
+            <a href="/2022/08/18/git/">gitのリモートリポジトリのブランチ名を指定してPUSHする</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/18/hexo/">hexoの目次をプラグインを導入する</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/18/phpunitTips/">phpunitを使うときのTips一覧</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/18/vscodePasteImage/">vscodeの拡張機能のPasteImageを導入する</a>
           </li>
         
           <li>
             <a href="/2022/08/17/jsGame/">jsでGameを作るときの座標関係を簡単に導入するロジック</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/17/20220817publishMaster/">hexoをdeployしたgithubのリポジトリからgithubPagesを確認する</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/17/deployHexo/">hexoをGithubにデプロイする</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/17/20220817shell/">シェルスクリプトのxargs内で複数の変数を使用する</a>
           </li>
         
       </ul>

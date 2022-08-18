@@ -6,18 +6,18 @@
   
   <title>シェルスクリプトのxargs内で複数の変数を使用する | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Summary シェルでワンライナーで加工前の変数と加工後の変数を使用する方法 shell -c &#39;XX&#39;を用いる">
+  <meta name="description" content="Summary ユースケース 実行するシェル 解説        Summary シェルでワンライナーで加工前の変数と加工後の変数を使用する方法 shell -c &#39;XX&#39;を用いる">
 <meta property="og:type" content="article">
 <meta property="og:title" content="シェルスクリプトのxargs内で複数の変数を使用する">
-<meta property="og:url" content="https://scrymee.github.io/2022/08/17/20220817shell/index.html">
+<meta property="og:url" content="https://scrymee.github.io/2022/08/17/shell/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Summary シェルでワンライナーで加工前の変数と加工後の変数を使用する方法 shell -c &#39;XX&#39;を用いる">
+<meta property="og:description" content="Summary ユースケース 実行するシェル 解説        Summary シェルでワンライナーで加工前の変数と加工後の変数を使用する方法 shell -c &#39;XX&#39;を用いる">
 <meta property="og:locale" content="ja_JP">
 <meta property="article:published_time" content="2022-08-17T01:04:19.000Z">
-<meta property="article:modified_time" content="2022-08-17T04:09:32.998Z">
+<meta property="article:modified_time" content="2022-08-18T13:36:46.548Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="codeing">
 <meta property="article:tag" content="shell">
+<meta property="article:tag" content="coding">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -75,9 +75,9 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-20220817shell" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-shell" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/08/17/20220817shell/" class="article-date">
+    <a href="/2022/08/17/shell/" class="article-date">
   <time class="dt-published" datetime="2022-08-17T01:04:19.000Z" itemprop="datePublished">2022-08-17</time>
 </a>
     
@@ -101,18 +101,34 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+        <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#yusukesu">ユースケース</a><ul>
+<li><a href="#shi-xing-surusieru">実行するシェル</a></li>
+<li><a href="#jie-shuo">解説</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h2><span id="summary">Summary</span><a href="#summary" class="header-anchor">#</a></h2><ul>
 <li>シェルでワンライナーで加工前の変数と加工後の変数を使用する方法</li>
 <li><code>shell -c &#39;XX&#39;</code>を用いる</li>
 </ul>
 <span id="more"></span>
 
-<h2 id="ユースケース"><a href="#ユースケース" class="headerlink" title="ユースケース"></a>ユースケース</h2><p>特定のファイルの出力ファイルをディレクトリ名から取得する</p>
+<h2><span id="yusukesu">ユースケース</span><a href="#yusukesu" class="header-anchor">#</a></h2><p>特定のファイルの出力ファイルをディレクトリ名から取得する</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">ls</span> -1</span><br><span class="line">apple-ringo.txt</span><br><span class="line">fish-sakana.txt</span><br></pre></td></tr></table></figure>
 
-<h3 id="実行するシェル"><a href="#実行するシェル" class="headerlink" title="実行するシェル"></a>実行するシェル</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ./app/tests/ -name *.txt | xargs -I@ sh -c <span class="string">&quot; VAR=`sed &#x27;s/-//g&#x27;`; phpunit @ --coverage-php reports/<span class="variable">$VAR</span>.php&quot;</span></span><br></pre></td></tr></table></figure>
+<h3><span id="shi-xing-surusieru">実行するシェル</span><a href="#shi-xing-surusieru" class="header-anchor">#</a></h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find ./app/tests/ -name *.txt | xargs -I@ sh -c <span class="string">&quot; VAR=`sed &#x27;s/-//g&#x27;`; phpunit @ --coverage-php reports/<span class="variable">$VAR</span>.php&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="解説"><a href="#解説" class="headerlink" title="解説"></a>解説</h3><p>実行シェルの<code>find</code>で、app&#x2F;tests配下のファイルを全取得する</p>
+<h3><span id="jie-shuo">解説</span><a href="#jie-shuo" class="header-anchor">#</a></h3><p>実行シェルの<code>find</code>で、app&#x2F;tests配下のファイルを全取得する</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ find ./app/tests/ -name *.txt</span><br><span class="line">app/tests/apple-ringoTest.php</span><br><span class="line">app/tests/fish-sakanaTest.php</span><br></pre></td></tr></table></figure>
 
 <p>その後<code>xargs -I@</code>で取得した値を引数として渡すが、引数の１つを加工したい。</p>
@@ -125,15 +141,16 @@
 <p>最終的に下記のようなコマンド郡が実行される</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">phpunit app/tests/apple-ringoTest.php --coverage-php reports/appleringoTest.php</span><br><span class="line">phpunit app/tests/fish-sakanaTest.php --coverage-php reports/fishsakanaTest.php</span><br></pre></td></tr></table></figure>
 
+<p>これでよし</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://scrymee.github.io/2022/08/17/20220817shell/" data-id="cl6x3rym700011gh44z6r9jev" data-title="シェルスクリプトのxargs内で複数の変数を使用する" class="article-share-link">共有</a>
+      <a data-url="https://scrymee.github.io/2022/08/17/shell/" data-id="cl6x3rym700011gh44z6r9jev" data-title="シェルスクリプトのxargs内で複数の変数を使用する" class="article-share-link">共有</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/codeing/" rel="tag">codeing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/" rel="tag">shell</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coding/" rel="tag">coding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/" rel="tag">shell</a></li></ul>
 
     </footer>
   </div>
@@ -151,9 +168,9 @@
     </a>
   
   
-    <a href="/2022/08/17/uploadHexo/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/08/16/startHexo/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">Hexoでgithubにファイルをアップロード自動化する</div>
+      <div class="article-nav-title">startHexo</div>
     </a>
   
 </nav>
@@ -180,7 +197,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">タグ</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeing/" rel="tag">codeing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/" rel="tag">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expansion/" rel="tag">expansion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/" rel="tag">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expansion/" rel="tag">expansion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpunit/" rel="tag">phpunit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li></ul>
     </div>
   </div>
 
@@ -190,7 +207,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">タグクラウド</h3>
     <div class="widget tagcloud">
-      <a href="/tags/codeing/" style="font-size: 10px;">codeing</a> <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/expansion/" style="font-size: 10px;">expansion</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a>
+      <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/expansion/" style="font-size: 10px;">expansion</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/phpunit/" style="font-size: 10px;">phpunit</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a>
     </div>
   </div>
 
@@ -212,23 +229,23 @@
       <ul>
         
           <li>
-            <a href="/2022/08/18/vscodePasteImage/">vscocodeの拡張機能のPasteImageを導入する</a>
+            <a href="/2022/08/18/git/">gitのリモートリポジトリのブランチ名を指定してPUSHする</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/18/hexo/">hexoの目次をプラグインを導入する</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/18/phpunitTips/">phpunitを使うときのTips一覧</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/18/vscodePasteImage/">vscodeの拡張機能のPasteImageを導入する</a>
           </li>
         
           <li>
             <a href="/2022/08/17/jsGame/">jsでGameを作るときの座標関係を簡単に導入するロジック</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/17/20220817publishMaster/">hexoをdeployしたgithubのリポジトリからgithubPagesを確認する</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/17/deployHexo/">hexoをGithubにデプロイする</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/17/20220817shell/">シェルスクリプトのxargs内で複数の変数を使用する</a>
           </li>
         
       </ul>

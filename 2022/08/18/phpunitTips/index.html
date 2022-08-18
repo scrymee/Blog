@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>phpunitを使うときのTips一覧 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="phpunitを実行しやすくるために実装レベルで修正したいこと 別の関数を呼び出すときはclassプロパティに値を挿入する   mockの使い方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="phpunitを使うときのTips一覧">
+<meta property="og:url" content="https://scrymee.github.io/2022/08/18/phpunitTips/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="phpunitを実行しやすくるために実装レベルで修正したいこと 別の関数を呼び出すときはclassプロパティに値を挿入する   mockの使い方">
+<meta property="og:locale" content="ja_JP">
+<meta property="article:published_time" content="2022-08-18T07:00:41.000Z">
+<meta property="article:modified_time" content="2022-08-18T14:03:15.892Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="phpunit">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSSフィード"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="検索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://scrymee.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-phpunitTips" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/08/18/phpunitTips/" class="article-date">
+  <time class="dt-published" datetime="2022-08-18T07:00:41.000Z" itemprop="datePublished">2022-08-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">programming</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      phpunitを使うときのTips一覧
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#phpunitwoshi-xing-siyasukurutamenishi-zhuang-reberudexiu-zheng-sitaikoto">phpunitを実行しやすくるために実装レベルで修正したいこと</a><ul>
+<li><a href="#bie-noguan-shu-wohu-bichu-sutokihaclasspuropateinizhi-wocha-ru-suru">別の関数を呼び出すときはclassプロパティに値を挿入する</a></li>
+</ul>
+</li>
+<li><a href="#mocknoshi-ifang">mockの使い方</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<span id="more"></span>
+
+<h2><span id="phpunitwoshi-xing-siyasukurutamenishi-zhuang-reberudexiu-zheng-sitaikoto">phpunitを実行しやすくるために実装レベルで修正したいこと</span><a href="#phpunitwoshi-xing-siyasukurutamenishi-zhuang-reberudexiu-zheng-sitaikoto" class="header-anchor">#</a></h2><p>Testの修正ではどうにもならないので実装レベルで直したいことについて</p>
+<h3><span id="bie-noguan-shu-wohu-bichu-sutokihaclasspuropateinizhi-wocha-ru-suru">別の関数を呼び出すときはclassプロパティに値を挿入する</span><a href="#bie-noguan-shu-wohu-bichu-sutokihaclasspuropateinizhi-wocha-ru-suru" class="header-anchor">#</a></h3><p>別のクラスの関数を呼び出すときに、下記のように関数内でインスタンスを宣言してから関数を呼び出すケースが有る。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// ..中略</span></span><br><span class="line">  <span class="variable">$userClass</span> = <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">  <span class="variable">$user</span> = <span class="variable">$userClass</span>-&gt;<span class="title function_ invoke__">find</span>(<span class="variable">$id</span>);</span><br><span class="line">  <span class="comment">// ..中略</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>これで動作上は問題ないのだが、テストの観点から見ると、この関数<code>getUser()</code>自体は別のクラスの関数を使用しているため依存度が高くなる。つまりテストを実行するときは、<code>User</code>クラスの<code>find</code>関数の動作まで保証して動作確認する必要がある。</p>
+<p>もし、Userクラスのfind関数は別途テストケースを設けている場合は、テストが重複してしまう。<br>さらに、上記の例だと簡単でよいが、条件説が複雑に絡み合っており、戻り値がすぐに判断できないようなケースがあるとすると、実装時は問題なくても将来的に保守する側やテストケースを新たに追加する場合困る。</p>
+<p>下記コードの説明。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUserPost</span>(<span class="params"><span class="variable">$id</span>, <span class="variable">$name</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// ..中略</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// -------------------</span></span><br><span class="line">  <span class="comment">// ユーザーインスタンスを呼び出す</span></span><br><span class="line">  <span class="comment">// -------------------</span></span><br><span class="line">  <span class="variable">$user</span> = <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ------------------------------</span></span><br><span class="line">  <span class="comment">// ログインユーザーがItemを持っているときの関数での処理</span></span><br><span class="line">  <span class="comment">// ※ログインユーザー情報をもとに、created・name・adress・nicknameの情報が</span></span><br><span class="line">  <span class="comment">// なければ例外を返却してしまい処理が進まないことが400行程度のコードを読み解くとわかる</span></span><br><span class="line">  <span class="comment">// (本来そのようなデータが存在しないため考慮していなかった)</span></span><br><span class="line">  <span class="comment">// そのためここを通過させるためにユーザーをログインさせた状態をテストコードに追記する必要がある。。。ただ、ここはhaveItemList()関数のテストで記載すれば良い話なので、ここであえてその条件を追記するのは手間。</span></span><br><span class="line">  <span class="comment">// -------------------------------</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="variable">$user</span>-&gt;<span class="title function_ invoke__">haveItemList</span>()) &#123;</span><br><span class="line">    <span class="comment">// 中略</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// ..中略</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>こういうケースではUserの情報に必要な情報を調査する必要がある。最終的にコメントアウトにあるように必要な情報がわかったが、それらはこの関数のテスト自体になんの影響もないため、実際のところは、<code>haveItemList</code>の戻り値がtrueかfalseを設定できればよいだけなのに、関係ない箇所の調査に時間を要した。またこの関数自体では必要のないログインユーザーの情報を設定する必要もあった。テストケースも重複して記載することになりスマートではない。</p>
+<p>これらの問題は、次で説明する<code>mock</code>や<code>stub</code>を使用することで依存関係の分離を実現できるのだが、上記の悪例のコードではmockなどを使用できない。</p>
+<p>そのためできる限り外部の関数を呼び出すときはプロパティに持たせる。これはphpunitの機能でprivateプロパティの値をoverwriteする機能があるため、これを用いることができるようになる。<br>上記のままであると、上書きができない。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="variable">$_user</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="variable language_">$this</span>-&gt;_user = <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable">$user</span>-&gt;<span class="title function_ invoke__">haveItemList</span>()) &#123;</span><br><span class="line">    <span class="comment">// 中略</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// ..中略</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>この場合は、$_userのプロパティをmockやstubに置き換えてあげることで__constructなどを実行せずに、プロパティを指定できることから、haveItemListの依存関係から抜けられる</p>
+<h2><span id="mocknoshi-ifang">mockの使い方</span><a href="#mocknoshi-ifang" class="header-anchor">#</a></h2><ol>
+<li>mockを作成する</li>
+<li>実行回数、引数それぞれの期待値を入力する</li>
+<li>外部関数のmockに組み込む</li>
+</ol>
+<p>これで、外部関数の依存関係をなくした上でmockを作成できる<br>期待値ごとにテストを書いてあげると良い</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://scrymee.github.io/2022/08/18/phpunitTips/" data-id="cl6z0ymv50003ayh4ctde13gk" data-title="phpunitを使うときのTips一覧" class="article-share-link">共有</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phpunit/" rel="tag">phpunit</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/08/18/hexo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          hexoの目次をプラグインを導入する
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/08/18/vscodePasteImage/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">vscodeの拡張機能のPasteImageを導入する</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">カテゴリ</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/" rel="tag">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expansion/" rel="tag">expansion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpunit/" rel="tag">phpunit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/expansion/" style="font-size: 10px;">expansion</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/phpunit/" style="font-size: 10px;">phpunit</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">8月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/08/18/git/">gitのリモートリポジトリのブランチ名を指定してPUSHする</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/18/hexo/">hexoの目次をプラグインを導入する</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/18/phpunitTips/">phpunitを使うときのTips一覧</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/18/vscodePasteImage/">vscodeの拡張機能のPasteImageを導入する</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/17/jsGame/">jsでGameを作るときの座標関係を簡単に導入するロジック</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

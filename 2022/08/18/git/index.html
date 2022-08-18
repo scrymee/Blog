@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>gitのリモートリポジトリのブランチ名を指定してPUSHする | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="gitで現在のブランチをリモートリポジトリの指定ブランチにPUSHする ローカルと別のブランチ名のリモートブランチにPUSHするコマンドをいつ使うのか 実例 参考文献">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gitのリモートリポジトリのブランチ名を指定してPUSHする">
+<meta property="og:url" content="https://scrymee.github.io/2022/08/18/git/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="gitで現在のブランチをリモートリポジトリの指定ブランチにPUSHする ローカルと別のブランチ名のリモートブランチにPUSHするコマンドをいつ使うのか 実例 参考文献">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://scrymee.github.io/images/20220818git/20220818git_2022-08-18-23-10-10.png">
+<meta property="article:published_time" content="2022-08-18T12:30:23.000Z">
+<meta property="article:modified_time" content="2022-08-18T14:13:12.539Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://scrymee.github.io/images/20220818git/20220818git_2022-08-18-23-10-10.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSSフィード"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="検索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="検索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://scrymee.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-git" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/08/18/git/" class="article-date">
+  <time class="dt-published" datetime="2022-08-18T12:30:23.000Z" itemprop="datePublished">2022-08-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/programming/">programming</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      gitのリモートリポジトリのブランチ名を指定してPUSHする
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#gitdexian-zai-noburantiworimotoripozitorinozhi-ding-burantinipushsuru">gitで現在のブランチをリモートリポジトリの指定ブランチにPUSHする</a></li>
+<li><a href="#rokarutobie-noburantiming-norimotoburantinipushsurukomandowoitushi-unoka">ローカルと別のブランチ名のリモートブランチにPUSHするコマンドをいつ使うのか</a></li>
+<li><a href="#shi-li">実例</a></li>
+<li><a href="#can-kao-wen-xian">参考文献</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<span id="more"></span>
+
+<h2><span id="gitdexian-zai-noburantiworimotoripozitorinozhi-ding-burantinipushsuru">gitで現在のブランチをリモートリポジトリの指定ブランチにPUSHする</span><a href="#gitdexian-zai-noburantiworimotoripozitorinozhi-ding-burantinipushsuru" class="header-anchor">#</a></h2><p>下記のようにコロンで指定すると別名のブランチにPUSHすることができる</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// ローカルの developブランチを、origin 上の release ブランチに push する</span><br><span class="line">git push origin develop:release</span><br></pre></td></tr></table></figure>
+
+<p>記載しない場合は、同名のブランチにPUSHする</p>
+<p>ちなみに最新の作業を指定プランチにPUSHしたい場合下記のようにもかける</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin HEAD</span><br></pre></td></tr></table></figure>
+
+<p>HEADは現在のブランチの先頭を指し、作業ブランチ名も取得される。<br>個人的にはブランチを切り替えているのを忘れてPUSHするようなケースもありうるので、明確に書くほうが良いようには思えるが。。。</p>
+<h2><span id="rokarutobie-noburantiming-norimotoburantinipushsurukomandowoitushi-unoka">ローカルと別のブランチ名のリモートブランチにPUSHするコマンドをいつ使うのか</span><a href="#rokarutobie-noburantiming-norimotoburantinipushsurukomandowoitushi-unoka" class="header-anchor">#</a></h2><p>githubのリポジトリを作り、ローカルでmasterブランチを使って作業していた。<br>定期的にバックアップを残したいが、そのたびに別のブランチを作成するのは手間だ。<br>そういうときに下記のようにするとブランチでバックアップを残せる。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master:2022backup-master</span><br></pre></td></tr></table></figure>
+
+<p>僕が実際に使ったケースとしては、hexoを使用しているときだ。<br>masterブランチは、<code>hexo d</code>によって一部のファイルのみ保存されている状況だが、hexoで出力したアプリケーションファイルをすべてバックアップとして残しておきたかった。特にmdファイルは<code>hexo d</code>だと保存されないため、将来的な移植にも不便だ。</p>
+<p>そこで、mdファイル保存用のリポジトリを作成しようと思ったが、管理に手間がかかる懸念があった。<br>そこで同じリポジトリのsrcブランチで、hexoで使用している全ファイルのbackupを残すこととした。</p>
+<p>※ブランチを切り替えることで、ファイルが閲覧可能状態になるため下書きなどを使用しているのであれば、あまり推奨はしない。リポジトリを分けることをおすすめする。</p>
+<h2><span id="shi-li">実例</span><a href="#shi-li" class="header-anchor">#</a></h2><p>hexoのディレクトリをすべてPUSHした。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gitを作成</span></span><br><span class="line">git init</span><br><span class="line"><span class="comment"># gitのリモートリポジトリとの接続</span></span><br><span class="line">git remote add origin [repository-name]</span><br><span class="line"><span class="comment"># git add</span></span><br><span class="line">git add .</span><br><span class="line"><span class="comment"># git commit</span></span><br><span class="line">git commit -m <span class="string">&#x27;first commit&#x27;</span></span><br><span class="line"><span class="comment"># git push</span></span><br><span class="line">git push -u origin main:src</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>mainで作業しているが、srcブランチが作成されPUSHできた</p>
+<p><img src="/images/20220818git/20220818git_2022-08-18-23-10-10.png"></p>
+<h2><span id="can-kao-wen-xian">参考文献</span><a href="#can-kao-wen-xian" class="header-anchor">#</a></h2><p><a target="_blank" rel="noopener" href="https://www-creators.com/archives/5206">ブランチを指定して git push する方法 | WWWクリエイターズ</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://scrymee.github.io/2022/08/18/git/" data-id="cl6z0ymv40001ayh4f1d4fta9" data-title="gitのリモートリポジトリのブランチ名を指定してPUSHする" class="article-share-link">共有</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/08/18/hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">hexoの目次をプラグインを導入する</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">カテゴリ</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">programming</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/" rel="tag">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/expansion/" rel="tag">expansion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpunit/" rel="tag">phpunit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/coding/" style="font-size: 20px;">coding</a> <a href="/tags/expansion/" style="font-size: 10px;">expansion</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/phpunit/" style="font-size: 10px;">phpunit</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">8月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/08/18/git/">gitのリモートリポジトリのブランチ名を指定してPUSHする</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/18/hexo/">hexoの目次をプラグインを導入する</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/18/phpunitTips/">phpunitを使うときのTips一覧</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/18/vscodePasteImage/">vscodeの拡張機能のPasteImageを導入する</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/17/jsGame/">jsでGameを作るときの座標関係を簡単に導入するロジック</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
