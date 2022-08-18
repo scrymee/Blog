@@ -1,19 +1,16 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]; then
-    echo '引数が１つではないためコミットメッセージをupdateに設定します'
+if [ $# -lt 1 ]; then
+    echo '引数が１より少ないためコミットメッセージをupdateに設定します'
     MSG='update'
-    exit 1
 else
-    MSG=$1
+    MSG=$*
 fi
-echo $MSG
 
 # ローカルのgitに修正を反映する
 echo '------------------------'
 echo 'git commit & push'
 echo '------------------------'
-o
 set -x # デバック開始
 git add . 
 git commit -m "$MSG"
