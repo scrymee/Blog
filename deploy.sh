@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -u
+
 if [ $# -lt 1 ]; then
     echo '引数が１より少ないためコミットメッセージをupdateに設定します'
     MSG='update'
