@@ -225,11 +225,11 @@ widgets:
         position: left
         type: profile
         # Author name
-        author: Your name
+        author: スーク
         # Author title
-        author_title: Your title
+        author_title: キャンプマン🏕
         # Author's current location
-        location: Your location
+        location: Osaka
         # URL or path to the avatar image
         avatar: 
         # Whether show the rounded avatar image
@@ -237,21 +237,21 @@ widgets:
         # Email address for the Gravatar
         gravatar: 
         # URL or path for the follow button
-        follow_link: https://github.com/ppoffice
+        follow_link: https://github.com/scrymee
         # Links to be shown on the bottom of the profile widget
         social_links:
             Github:
                 icon: fab fa-github
-                url: https://github.com/ppoffice
+                url: https://github.com/scrymee
             Facebook:
                 icon: fab fa-facebook
                 url: https://facebook.com
             Twitter:
                 icon: fab fa-twitter
                 url: https://twitter.com
-            Dribbble:
-                icon: fab fa-dribbble
-                url: https://dribbble.com
+            # Dribbble:
+            #     icon: fab fa-dribbble
+            #     url: https://dribbble.com
             RSS:
                 icon: fas fa-rss
                 url: /

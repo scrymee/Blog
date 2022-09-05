@@ -196,3 +196,44 @@ a
             flex-shrink: 1
             word-wrap: break-word
             white-space: normal
+
+/* ---------------------------------
+ *    Original CSS
+ * --------------------------------- */
+
+h2
+    font-size: 25px
+    background: #f7f7f7;
+    padding: 20px 15px 18px
+    border-left: 9px solid #4865b2;
+    line-height: 40px;
+    margin-top: 60px
+
+h3
+    font-size: 20px
+    letter-spacing: 1.6px;
+    padding: 10px 15px 10px;
+    border-left: 9px solid #4865b2;
+    margin-top: 60px;
+
+h4
+    font-size: 16px
+    letter-spacing: 1.6px;
+    padding: 5px 15px 5px;
+    border-left: 9px solid #4865b2;
+    margin-top: 60px;
+
+.tocStart + ul > li, .tocStart + ul > li > ul > li{
+    list-style: none;
+}
+.tocStart + ul > li::before, .tocStart + ul > li > ul > li::before{
+    font-family: "Font Awesome 5 Free","Font Awesome 5 Brands"
+    content: "\f058"
+    display:  inline-block
+    margin-right: 5px
+    font-weight: 400
+    color: #3273dc
+}
+.tocStart + ul > li > a, .tocStart + ul > li > ul > li > a{
+    color: #666;
+}
