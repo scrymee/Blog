@@ -134,7 +134,7 @@ const input = await new Promise (resolve => {
 
 まあNode.jsとか使えばもっと簡単なんだろうけど、この発想は大好き。
 
-## 例えばこんな漢字で実装
+## 例えばこんな感じで実装
 
 ```js
 let inputResolve
